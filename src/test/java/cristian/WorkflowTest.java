@@ -45,7 +45,7 @@ public class WorkflowTest {
         Nationalities nationalities = new Nationalities(driver);
         nationalities.goToNationalitiesCategory();
         nationalities.deleteNationalitiesStartingWithA();
-        Thread.sleep(3000);
+        //Thread.sleep(3000);
     }
 
     @Test
@@ -55,7 +55,6 @@ public class WorkflowTest {
         Nationalities nationalities = new Nationalities(driver);
         nationalities.goToNationalitiesCategory();
         nationalities.addThreeNewNationalities();
-        //nationalities.waitForInvisibilityArabianNationality();
-        Thread.sleep(3000);
+        //Thread.sleep(3000);
     }
 }

@@ -93,6 +93,9 @@ public class Nationalities {
         getNationalAzerbaijani().click();
         getDeleteButton().click();
         getDeleteDialogButton().click();
+        WebDriverWait wait=new WebDriverWait(driver, 7);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"search-results\"]/div[1]")));
+
     }
     public void addThreeNewNationalities(){
         String nationality1="African";
@@ -107,12 +110,11 @@ public class Nationalities {
         getAddButton().click();
         getNameNationalityField().sendKeys(nationality3);
         getSaveNationalityButton().click();
+        WebDriverWait wait=new WebDriverWait(driver, 7);
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id=\"frmList_ohrmListComponent\"]/script")));
+
     }
 
-    public void waitForInvisibilityArabianNationality(){
-        WebDriverWait wait=new WebDriverWait(driver, 5);
-        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id=\"resultTable\"]/tbody/tr[3]")));
-    }
 }
 
 

@@ -1,4 +1,4 @@
-package webpages;
+package cristian;
 
 import lombok.Getter;
 import org.openqa.selenium.By;

@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import webpages.LoginPage;
+import webpages.Nationalities;
 import webpages.dashBoard;
 
 import java.util.concurrent.TimeUnit;
@@ -36,6 +37,7 @@ public class Workflow {
         loginPage.setUserPassword("opensourcecms");
         loginPage.clickLogin();
         Assert.assertTrue(loginPage.isPageOpened()); //Check if page is opened
+
     }
 
     @Test
@@ -52,6 +54,24 @@ public class Workflow {
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
         dashb.goToAddUserPage();
         dashb.completeUserDetails();
+    }
+
+    @Test
+    public void addNationalities() throws InterruptedException {
+        //Create object of HomePage Class
+        LoginPage loginPage = new LoginPage(driver);
+        //Fill up data
+        loginPage.setUserEmail("opensourcecms");
+        loginPage.setUserPassword("opensourcecms");
+        loginPage.clickLogin();
+        Assert.assertTrue(loginPage.isPageOpened()); //Check if page is opened
+        Nationalities nationalities = new Nationalities(driver);
+        nationalities.goToNationalitiesCategory();
+        //nationalities.deleteNationalitiesStartingWithA();
+        nationalities.addThreeNewNationalities();
+        //nationalities.waitForInvisibilityArabianNationality();
+        Thread.sleep(3000);
+        Assert.assertTrue(nationalities.getNationalitiesList().isDisplayed());
     }
 
 

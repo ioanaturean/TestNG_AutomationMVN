@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import raul.JobPage;
 import webpages.LoginPage;
 import webpages.Nationalities;
 import webpages.dashBoard;
@@ -20,12 +21,13 @@ public class Workflow {
         System.setProperty("webdriver.chrome.driver", "src/main/resources\\chromedriver.exe");
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+        driver.manage().window().maximize();
     }
 
-    @After
+    /*@After
     public void close() {
         driver.close();
-    }
+    }*/
 
     @Test
     public void Login() {
@@ -73,6 +75,5 @@ public class Workflow {
         Thread.sleep(3000);
         Assert.assertTrue(nationalities.getNationalitiesList().isDisplayed());
     }
-
 
 }

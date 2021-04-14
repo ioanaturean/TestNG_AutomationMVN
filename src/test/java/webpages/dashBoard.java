@@ -51,13 +51,10 @@ public class dashBoard {
         employeeName.sendKeys("opensourcecms opensourcecms");
         username.clear();
         username.sendKeys("Ioana");
-
         password.clear();
         password.sendKeys("Ioana45*");
         confirmPass.clear();
         confirmPass.sendKeys("Ioana45*");
         saveButton.click();
     }
-
-
 }

@@ -102,4 +102,13 @@ public class JobPage {
         Assert.assertTrue(temp.equals("No Records Found"));
     }
 
+    public boolean checkIfThereAreRecords(){
+        boolean isTrue = false;
+        String temp = driver.findElement(By.xpath("//*[@id=\"resultTable\"]/tbody/tr/td")).getText();
+        if(temp.equals("No Records Found")){
+            isTrue=true;
+        }
+        return isTrue;
+    }
+
 }

@@ -7,10 +7,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import webpages.LoginPage;
 
+import javax.swing.*;
 import java.util.concurrent.TimeUnit;
 
-public class WorkFlowRaul {
+public class WorkFlowRaul{
     WebDriver driver;
+    JFrame frame;
 
     @Before
     public void setup() {
@@ -48,14 +50,18 @@ public class WorkFlowRaul {
         jobPage.navigateToWorkShiftsPage();
 
         //shift1
-        jobPage.clickAddShiftButton();
-        jobPage.setShiftName("First Shift");
-        jobPage.selectHoursFrom("01:00");
-        jobPage.selectHoursTo("14:00");
-        jobPage.clickAvailableEmployee();
-        jobPage.clickAssignEmployee();
-        jobPage.clickSaveButton();
-        jobPage.checkAddFunction("First Shift");
+        if(jobPage.checkIfThereAreRecords()) {
+            jobPage.clickAddShiftButton();
+            jobPage.setShiftName("First Shift");
+            jobPage.selectHoursFrom("01:00");
+            jobPage.selectHoursTo("14:00");
+            jobPage.clickAvailableEmployee();
+            jobPage.clickAssignEmployee();
+            jobPage.clickSaveButton();
+            jobPage.checkAddFunction("First Shift");
+        }else{
+            JOptionPane.showMessageDialog(frame,"There is already a work shift.");
+        }
     }
 
     @Test
@@ -68,12 +74,23 @@ public class WorkFlowRaul {
         jobPage.navigateToWorkShiftsPage();
 
         //edit work shift
-        jobPage.clickExistingWorkShift();
-        jobPage.editShiftName("Edited first shift");
-        jobPage.selectHoursFrom("05:00");
-        jobPage.selectHoursTo("17:00");
-        jobPage.clickSaveButton();
-        jobPage.checkAddFunction("Edited first shift");
+        if(jobPage.checkIfThereAreRecords() == false) {
+            jobPage.clickExistingWorkShift();
+            jobPage.editShiftName("Edited first shift");
+            jobPage.selectHoursFrom("05:00");
+            jobPage.selectHoursTo("17:00");
+            jobPage.clickSaveButton();
+            jobPage.checkAddFunction("Edited first shift");
+        }else{
+            jobPage.clickAddShiftButton();
+            jobPage.setShiftName("First Shift");
+            jobPage.selectHoursFrom("01:00");
+            jobPage.selectHoursTo("14:00");
+            jobPage.clickAvailableEmployee();
+            jobPage.clickAssignEmployee();
+            jobPage.clickSaveButton();
+            jobPage.checkAddFunction("First Shift");
+        }
     }
 
     @Test
@@ -86,7 +103,11 @@ public class WorkFlowRaul {
         jobPage.navigateToWorkShiftsPage();
 
         //delete work shift
-        jobPage.deleteShift();
-        jobPage.checkIfElementWasDeleted();
+        if(jobPage.checkIfThereAreRecords() == false) {
+            jobPage.deleteShift();
+            jobPage.checkIfElementWasDeleted();
+        }else{
+            JOptionPane.showMessageDialog(frame,"There are no records to delete");
+        }
     }
 }

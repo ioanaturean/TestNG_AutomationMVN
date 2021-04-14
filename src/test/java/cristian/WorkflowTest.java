@@ -8,10 +8,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import webpages.LoginPage;
 
+import javax.swing.*;
 import java.util.concurrent.TimeUnit;
 
 public class WorkflowTest {
     WebDriver driver;
+    JFrame frame;
 
     @Before
     public void setup() {
@@ -44,8 +46,11 @@ public class WorkflowTest {
 
         Nationalities nationalities = new Nationalities(driver);
         nationalities.goToNationalitiesCategory();
-        nationalities.deleteNationalitiesStartingWithA();
-        //Thread.sleep(3000);
+        if (nationalities.checkIfNationalitiesExist()) {
+            nationalities.deleteNationalitiesStartingWithA();
+        }else {
+            JOptionPane.showMessageDialog(frame,"The nationalities are already deleted!");
+        }
     }
 
     @Test

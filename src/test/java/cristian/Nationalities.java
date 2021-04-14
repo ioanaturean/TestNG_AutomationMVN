@@ -70,7 +70,6 @@ public class Nationalities {
     private WebElement nationalitiesList;
 
 
-
     public void goToNationalitiesCategory() {
         Actions action = new Actions(driver);
         action.moveToElement(adminButton).click(nationalitiesButton).build().perform();
@@ -91,14 +90,15 @@ public class Nationalities {
         getNationalAzerbaijani().click();
         getDeleteButton().click();
         getDeleteDialogButton().click();
-        WebDriverWait wait=new WebDriverWait(driver, 7);
+        WebDriverWait wait = new WebDriverWait(driver, 7);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"search-results\"]/div[1]")));
 
     }
-    public void addThreeNewNationalities(){
-        String nationality1="African";
-        String nationality2="Angolan";
-        String nationality3="Arabian";
+
+    public void addThreeNewNationalities() {
+        String nationality1 = "Bulgar";
+        String nationality2 = "Ceh";
+        String nationality3 = "Danez";
         getAddButton().click();
         getNameNationalityField().sendKeys(nationality1);
         getSaveNationalityButton().click();
@@ -108,9 +108,17 @@ public class Nationalities {
         getAddButton().click();
         getNameNationalityField().sendKeys(nationality3);
         getSaveNationalityButton().click();
-        WebDriverWait wait=new WebDriverWait(driver, 7);
+        WebDriverWait wait = new WebDriverWait(driver, 7);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id=\"frmList_ohrmListComponent\"]/script")));
 
+    }
+
+    public boolean checkIfNationalitiesExist() {
+        String nationality = driver.findElement(By.xpath("//tbody/tr[1]//a")).getText();
+        if (nationality.startsWith("A")) {
+            return true;
+        }
+        return false;
     }
 
 }

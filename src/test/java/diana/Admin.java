@@ -7,6 +7,8 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.concurrent.TimeUnit;
+
 public class Admin {
     private WebDriver driver;
     private static String PAGE_URL = "https://s2.demo.opensourcecms.com/orangehrm/symfony/web/index.php/auth/login";
@@ -53,12 +55,11 @@ public class Admin {
         actions.moveToElement(admin);
         actions.click().build().perform();
         actions.moveToElement(adminJob);
-        actions.click().build().perform();
         adminJob.click();
         actions.moveToElement(adminPayGrades);
         actions.click().build().perform();
         addButtonAdmin.click();
-        inputNamePayG.sendKeys("grade1");
+        inputNamePayG.sendKeys("g1");
         saveButtonAdmin.click();
     }
 
@@ -84,6 +85,7 @@ public class Admin {
         actions.moveToElement(language);
         actions.click().build().perform();
         addButtonAdmin.click();
+        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
         inputLanguage.sendKeys("english");
         saveButtonAdmin.click();
     }
@@ -97,9 +99,8 @@ public class Admin {
         actions.moveToElement(skills);
         actions.click().build().perform();
         addButtonAdmin.click();
-        inputSkillName.sendKeys("communication");
-        inputTextAreaSkill.sendKeys("performant");
+        inputSkillName.sendKeys("it skills");
+        inputTextAreaSkill.sendKeys("developer");
         saveButtonAdmin.click();
-
     }
 }

@@ -32,10 +32,12 @@ public class Reports {
     WebElement inputEmployeeName;
     @FindBy(id = "report_pay_grade")
     WebElement payGrade;
+    @FindBy(xpath = "//*[@id=\"report_criteria_list\"]/option[1]")
+    WebElement education;
     @FindBy(id = "report_employment_status")
     WebElement employeeStatus;
     @FindBy(id = "report_education")
-    WebElement education;
+    WebElement setEducation;
     @FindBy(id = "service_period_comparision")
     WebElement servicePeriod;
     @FindBy(id = "joined_date_comparision")
@@ -73,9 +75,7 @@ public class Reports {
         PageFactory.initElements(driver, this);
     }
 
-
-
-    public void addReport(){
+    public void addReport1(){
         pim.click();
         Actions actions = new Actions(driver);
         actions.moveToElement(reports);
@@ -84,5 +84,16 @@ public class Reports {
         addButton.click();
         inputReportName.sendKeys("Report 1");
         selectionCriteriaList.click();
+        addSelectionCriteria.click();
+        addSelectionCriteria.click();
+        addSelectionCriteria.click();
+        inputEmployeeName.sendKeys("Ana Maria");
+        Select selectPayGrade = new Select(driver.findElement(By.id("report_pay_grade")));
+        selectPayGrade.selectByIndex(1);
+        Select selectEducation = new Select(driver.findElement(By.id("report_education")));
+        selectEducation.selectByIndex(1);
+        addDisplayFields.click();
+        checkDisplay.click();
+        saveButton.click();
     }
 }

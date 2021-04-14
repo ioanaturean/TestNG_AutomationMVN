@@ -49,12 +49,15 @@ public class WorkFlowDiana {
         //Check if page is opened
         Assert.assertTrue(loginPage.isPageOpened());
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-        //Add Pay Grade from Admin Page
+        //Add Pay Grade, Education, Language from Admin Page
         Admin adm = new Admin(driver);
         adm.addPayGrades();
         adm.addEducation();
         adm.addLanguage();
         adm.addSkill();
+        //Add report page
+        Reports reports = new Reports(driver);
+        reports.addReport1();
     }
 
 }

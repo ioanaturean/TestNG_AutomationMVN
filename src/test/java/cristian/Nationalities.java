@@ -73,9 +73,7 @@ public class Nationalities {
 
     public void goToNationalitiesCategory() {
         Actions action = new Actions(driver);
-        WebElement admin = driver.findElement(By.id("menu_admin_viewAdminModule"));
-        WebElement nationalities = driver.findElement(By.id("menu_admin_nationality"));
-        action.moveToElement(admin).click(nationalities).build().perform();
+        action.moveToElement(adminButton).click(nationalitiesButton).build().perform();
     }
 
     public void deleteNationalitiesStartingWithA() {
